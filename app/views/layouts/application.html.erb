@@ -10,6 +10,34 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class="container">
+      <header class="header clearfix">
+        <div class="square">
+          <%= link_to "F", root_path %>
+        </div>
+        <nav>
+          <ul class="top_menu clearfix">
+            <% if logged_in? %>
+              <li><%= link_to current_user.name, user_path(current_user.id) %></li>
+              <li><%= link_to "Home", root_path %></li>
+              <li><%= link_to "NewPicture", new_picture_path %></li>
+              <li><%= link_to "Logout", session_path(current_user.id), method: :delete %></li>
+            <% else %>
+              <li><%= link_to "Sign up", new_user_path %></li>
+              <li><%= link_to "Login", new_session_path %></li>
+            <% end %>
+          </ul>
+        </nav>
+      </header>
+      <div class="content_box">
+        <% flash.each do |key, value| %>
+          <%= content_tag(:div, value, class: "#{key}") %>
+        <% end %>
+        <%= yield %>
+        </div>
+    <footer>
+      <p>© 2020 INSTAGRAM FROM FACEBOOK</p>
+    </footer>
+    </div>
   </body>
 </html>

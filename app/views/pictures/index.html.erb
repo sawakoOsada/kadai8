@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Pictures</h1>
+  <% @pictures.each do |picture| %>
+    <div class="panel panel-default"">
+      <div class="panel-body">
+        <%= picture.user.name %><br>
+        <%= image_tag picture.image.url %><br>
+        <%= picture.content %><br>
+        <%= link_to 'Show', picture %>
+        <%= link_to 'Edit', edit_picture_path(picture) %>
+        <%= link_to 'Destroy', picture, method: :delete, data: { confirm: 'Are you sure?' } %>
+      </div>
+    </div>
+  <% end %>
+
+<br>
+
+<%= link_to 'New Picture', new_picture_path %>
