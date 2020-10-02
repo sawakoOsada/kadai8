@@ -35,6 +35,7 @@ class PicturesController < ApplicationController
     else
       respond_to do |format|
         if @picture.save
+          ConfirmMailer.confirm_mail(@Picture).deliver
           format.html { redirect_to @picture }
           format.json { render :show, status: :created, location: @picture }
         else
@@ -73,14 +74,14 @@ class PicturesController < ApplicationController
     render :new if @picture.invalid?
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-  def set_picture
-    @picture = Picture.find(params[:id])
-  end
+private
+  # Use callbacks to share common setup or constraints between actions.
+def set_picture
+  @picture = Picture.find(params[:id])
+end
 
-    # Only allow a list of trusted parameters through.
-  def picture_params
-    params.require(:picture).permit(:image, :image_cache, :content)
-  end
+  # Only allow a list of trusted parameters through.
+def picture_params
+  params.require(:picture).permit(:image, :image_cache, :content)
+end
 end
