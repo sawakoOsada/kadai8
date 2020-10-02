@@ -24,6 +24,7 @@ class PicturesController < ApplicationController
 
   # GET /pictures/1/edit
   def edit
+    limit_edit
   end
 
   # POST /pictures
@@ -35,7 +36,8 @@ class PicturesController < ApplicationController
     else
       respond_to do |format|
         if @picture.save
-          ConfirmMailer.confirm_mail(@Picture).deliver
+          @user = @current_user
+          ConfirmMailer.confirm_post(@user,@Picture).deliver
           format.html { redirect_to @picture }
           format.json { render :show, status: :created, location: @picture }
         else
@@ -83,5 +85,10 @@ end
   # Only allow a list of trusted parameters through.
 def picture_params
   params.require(:picture).permit(:image, :image_cache, :content)
+end
+def limit_edit
+  if @current_user.id ==! @picture.user.id
+    render :index
+  end
 end
 end

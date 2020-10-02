@@ -14,6 +14,9 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    # if @user.profile && @user.profile.url
+    #   redirect_to user_path(@user.id)
+    # end
   end
 
 private

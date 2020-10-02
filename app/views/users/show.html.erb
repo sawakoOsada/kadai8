@@ -1,2 +1,7 @@
-<h1><%= @user.name %>のページ</h1>
+<%= form_with(model: @user, local: true) do |form| %>
+<%= image_tag(@user.profile.url) if @user.profile && @user.profile.url %>
+<%= form.file_field :profile unless @user.profile && @user.profile.url %>
+<%= form.submit %>
+<h1><%= @user.name %></h1>
 <p>メールアドレス: <%= @user.email %></p>
+<% end %>

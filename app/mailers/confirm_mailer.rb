@@ -1,8 +1,8 @@
 class ConfirmMailer < ApplicationMailer
   include SessionsHelper
-  def confirm_mail(picture)
+  def confirm_post(user,picture)
+    @user = user
     @picture = picture
-    @user = @current_user
-    mail to: @user.email, subject: "お問い合わせの確認メール"
+    mail to: @user.email, subject: "画像を投稿しました"
   end
 end
