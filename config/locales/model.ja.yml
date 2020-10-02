@@ -1,11 +1,11 @@
 ja:
   activerecord:
     models:
-      picture: 画像
+      picture: 投稿
       user: ユーザー
     attributes:
       picture:
-        image: 投稿画像
+        image: 画像
         content: 内容
       user:
         name: 名前
