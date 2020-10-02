@@ -12,6 +12,7 @@ module Inst
     config.load_defaults 5.2
     config.time_zone = 'Tokyo'
     config.active_record.default_timezone = :local
+    config.i18n.default_locale = :ja
     # g.assets false
     # g.helper false
     # Settings in config/environments/* take precedence over those specified here.
