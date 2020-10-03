@@ -21,6 +21,7 @@
               <li><%= link_to current_user.name, user_path(current_user.id) %></li>
               <li><%= link_to "Home", root_path %></li>
               <li><%= link_to "NewPicture", new_picture_path %></li>
+              <li><%= link_to 'Favorite Picture', favorites_path %></li>
               <li><%= link_to "Logout", session_path(current_user.id), method: :delete %></li>
             <% else %>
               <li><%= link_to "Sign up", new_user_path %></li>

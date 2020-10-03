@@ -1,7 +1,10 @@
 <%= form_with(model: @user, local: true) do |form| %>
+<%= form.label :profile %>
 <%= image_tag(@user.profile.url) if @user.profile && @user.profile.url %>
-<%= form.file_field :profile unless @user.profile && @user.profile.url %>
-<%= form.submit %>
+<%# <% if @current_user.id == @user.id %> %>
+  <%= form.file_field :profile %>
+  <%= form.submit %>
+<%# <% end %> %>
 <h1><%= @user.name %></h1>
 <p>メールアドレス: <%= @user.email %></p>
 <% end %>

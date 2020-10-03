@@ -1,0 +1,13 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Favorites</h1>
+  <% @favorites.each do |favorite| %>
+    <div class="panel panel-default"">
+      <div class="panel-body">
+        <%= favorite.user.name %><br>
+        <%= image_tag favorite.picture.image.url %><br>
+        <%= favorite.picture.content %><br>
+        <%= link_to 'Show', favorite.picture %>
+      </div>
+    </div>
+  <% end %>

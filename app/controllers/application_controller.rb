@@ -8,6 +8,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def compare_user
+    if @current_user.id != user.id
+      redirect_to root_path
+    end
+  end
+
   protect_from_forgery with: :exception
   include SessionsHelper
 end

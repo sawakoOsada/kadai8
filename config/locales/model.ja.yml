@@ -3,6 +3,7 @@ ja:
     models:
       picture: 投稿
       user: ユーザー
+      favorite: お気に入り
     attributes:
       picture:
         image: 画像
