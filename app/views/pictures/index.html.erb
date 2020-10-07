@@ -1,10 +1,9 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Pictures</h1>
   <% @pictures.each do |picture| %>
     <div class="panel panel-default"">
       <div class="panel-body">
         <%= picture.user.name %><br>
+        <hr>
         <%= image_tag picture.image.url %><br>
         <%= picture.content %><br>
         <%= link_to 'Show', picture %>
@@ -15,8 +14,4 @@
       </div>
     </div>
   <% end %>
-
 <br>
-
-<%= link_to 'New Picture', new_picture_path %>
-<%= link_to 'Favorite Picture', favorites_path %>

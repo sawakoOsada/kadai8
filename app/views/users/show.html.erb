@@ -1,10 +1,6 @@
-<%= form_with(model: @user, local: true) do |form| %>
-<%= form.label :profile %>
 <%= image_tag(@user.profile.url) if @user.profile && @user.profile.url %>
-<%# <% if @current_user.id == @user.id %> %>
-  <%= form.file_field :profile %>
-  <%= form.submit %>
-<%# <% end %> %>
 <h1><%= @user.name %></h1>
 <p>メールアドレス: <%= @user.email %></p>
+<% if current_user == @user %>
+  <%= link_to 'Edit', edit_user_path(@user.id) %>
 <% end %>

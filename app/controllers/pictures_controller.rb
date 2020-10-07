@@ -1,6 +1,7 @@
 class PicturesController < ApplicationController
   before_action :authenticate_user
   before_action :set_picture, only: [:show, :edit, :update, :destroy]
+  before_action :compare_user, only: [:edit, :update, :destroy]
 
   # GET /pictures
   # GET /pictures.json
@@ -25,7 +26,6 @@ class PicturesController < ApplicationController
 
   # GET /pictures/1/edit
   def edit
-    limit_edit
   end
 
   # POST /pictures
@@ -38,9 +38,9 @@ class PicturesController < ApplicationController
       respond_to do |format|
         if @picture.save
           @user = @current_user
-          ConfirmMailer.confirm_post(@user,@Picture).deliver
-          format.html { redirect_to @picture }
-          format.json { render :show, status: :created, location: @picture }
+          ConfirmMailer.confirm_post(@user).deliver
+          format.html { redirect_to @picture, notice: "投稿しました" }
+          format.json { render :show, status: :created, location: @picture　}
         else
           format.html { render :new }
           format.json { render json: @picture.errors, status: :unprocessable_entity }
@@ -72,6 +72,7 @@ class PicturesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
   def confirm
     @picture = current_user.pictures.build(picture_params)
     render :new if @picture.invalid?
@@ -82,14 +83,15 @@ private
 def set_picture
   @picture = Picture.find(params[:id])
 end
-
   # Only allow a list of trusted parameters through.
 def picture_params
   params.require(:picture).permit(:image, :image_cache, :content)
 end
-def limit_edit
-  if @current_user.id ==! @picture.user.id
-    render :index
+
+def compare_user
+  if @current_user.id != params[:id].to_i
+    flash[:notice]="権限がありません"
+    redirect_to pictures_url
   end
 end
 end

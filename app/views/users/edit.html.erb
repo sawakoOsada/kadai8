@@ -1,0 +1,12 @@
+<%= form_with(model: @user, local: true) do |form| %>
+  <div class="field">
+    <%= form.label :profile %>
+    <%= form.file_field :profile %>
+    <%= form.hidden_field :profile_cache %>
+  </div><br>
+  <h1><%= @user.name %></h1>
+  <p>メールアドレス: <%= @user.email %></p>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
