@@ -89,7 +89,7 @@ def picture_params
 end
 
 def compare_user
-  if @current_user.id != params[:id].to_i
+  if current_user.id != params[:id].to_i
     flash[:notice]="権限がありません"
     redirect_to pictures_url
   end
