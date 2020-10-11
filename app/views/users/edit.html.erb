@@ -12,6 +12,10 @@
 
   <table class="profile_editer">
     <tr>
+      <th><%= image_tag(@user.profile.url) if @user.profile && @user.profile.url %>
+      <td><%= form.file_field :profile %>
+    </tr>
+    <tr>
       <th><%= form.label :name %>
       <td><%= form.text_field :name, class:"form-control", placeholder:"名前" %>
     </tr>
