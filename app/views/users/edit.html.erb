@@ -1,24 +1,32 @@
 <%= form_with(model: @user, local: true) do |form| %>
-<% if @user.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(@user.errors.count, "error") %> prohibited this @user from being saved:</h2>
-    <ul>
-    <% @user.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-    </ul>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this @user from being saved:</h2>
+      <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <table class="profile_editer">
+    <tr>
+      <th><%= form.label :name %>
+      <td><%= form.text_field :name, class:"form-control", placeholder:"名前" %>
+    </tr>
+    <tr>
+      <th><%= form.label :email %>
+      <td><%= form.text_field :email, class:"form-control", placeholder:"メールアドレス" %>
+    </tr>
+    <tr>
+      <th><%= form.label :profile_text %>
+      <td><%= form.text_area :profile_text, class:"form-control" %>
+    </tr>
+  </table>
+
+  <div class="action_edit_user">
+    <%= form.submit "送信する", class:"btn btn-info" %>
   </div>
-<% end %>
-  <div class="field">
-    <%= form.label :profile %>
-    <%= form.file_field :profile %>
-  </div><br>
-  <h1><%= @user.name %></h1>
-  <%= form.label :name %>
-  <%= form.text_field :name %>
-  <p>メールアドレス: <%= @user.email %></p>
-  <%= form.hidden_field :password %>
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+
 <% end %>

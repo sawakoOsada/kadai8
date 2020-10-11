@@ -13,3 +13,5 @@ ja:
         email: メールアドレス
         password: パスワード
         password_confirmation: 確認用パスワード
+        profile: プロフィール写真
+        profile_text: 自己紹介

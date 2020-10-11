@@ -19,7 +19,6 @@ class UsersController < ApplicationController
   end
 
   def update
-    # if @user.update(name: params[:name])
     if @user.update(user_params)
       redirect_to user_path(@user.id), notice: "プロフィールを編集しました！"
     else
@@ -33,7 +32,7 @@ class UsersController < ApplicationController
 
 private
 def user_params
-  params.require(:user).permit(:name, :email, :profile, :password,
+  params.require(:user).permit(:name, :email, :profile, :profile_text, :password,
                                :password_confirmation)
 end
 

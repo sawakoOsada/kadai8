@@ -1,0 +1,25 @@
+.profile_image{
+  float: left;
+  padding: 10px;
+}
+.profile_other{
+  float: left;
+  padding-left: 20px;
+}
+.clearfix:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.profile_editer th {
+  text-align: right;
+  padding-right: 1rem;
+  padding-top: 0.5rem;
+}
+.profile_editer td {
+  padding: 1rem;
+}
+.action_edit_user {
+  text-align: center;
+}
